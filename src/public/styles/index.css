@@ -1,8 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* ✅ El padding cuenta dentro del width */
+}
+
+:root  {
+  /* Azul UCi Principal */
+  --uci-blue-50: #e6f0ff;
+  --uci-blue-100: #b3d4ff;
+  --uci-blue-500: #0033a0;  /* Principal */
+  --uci-blue-900: #001a50;
+  
+  /* Rojo UCi Secundario */
+  --uci-red-500: #d52b1e;   /* Secundario */
+  
+  /* Naranja Académico */
+  --uci-orange-500: #ff6b00; /* Acento */
+  
+  /* Neutrales Académicos */
+  --uci-gray-100: #f8f9fa;
+  --uci-gray-500: #6c757d;
+  --uci-gray-900: #212529;
+
+  --font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 
+                 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+                 'Helvetica Neue', sans-serif;
+  
+  --font-mono: 'Cascadia Code', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono',
+               'Droid Sans Mono', 'Source Code Pro', 'Ubuntu Mono', monospace;
+}
+
 html {
-    background-color: darkslategrey;
+    display: flex;
+
+    justify-content: left;
+    justify-items: stretch;
+
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.uchat-nav-bar {
+    position: fixed;
+    top: 0; left: 0;
+
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    color: wheat;
-    font-family: 'Courier New', Courier, monospace;
+
+    width: 100vw;
+    padding: 20px 25px 13px 13px;
+    margin: 0;
+
+    background-color: var(--uci-blue-900);
+    color: var(--uci-gray-100);
+    border-bottom: 3px groove var(--uci-blue-500);
+    box-shadow: 0px 5px 10px 5px rgba(60, 60, 60, 0.15);
+
+    font-family: var(--font-system), monospace, bold;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: -0.05em;
+}
+
+#uchat-homepage-img {
+    width: 120px;
+}
+
+.uchat-homepage-name {
+    display: flex;
+    align-items: right;
+    margin-left: auto;
+}
+
+#uchat-homepage-buttons {
+    transition: 
+        padding 0.3s ease-in 0s,
+        color .3s ease-in 0s,
+        background-color 0.3s ease-in 0s,
+        oppacity 0.3s ease-in 0s;
+
+    font-family: var(--font-system);
+    font-size: 20px;
+    color: var(--uci-gray-900);
+
+    border: none;
+    border-radius: 20px;
+
+    padding: 5px 18px;
+    background-color: #6c757d;
+    opacity: 50%;
+}
+
+#uchat-homepage-buttons:hover {
+    transition: 
+        padding 0.3s ease-out 0s,
+        color .3s ease-out 0s,
+        background-color 0.3s ease-out 0s,
+        oppacity 0.3s ease-out 0s;
+
+    font-family: var(--font-system);
+    font-size: 20px;
+
+    border: none;
+    border-radius: 20px;
+
+    padding: 8px 28px;
+
+    color: var(--uci-gray-100);
+    background-color: var(--uci-gray-900);
+    opacity: 80%;
+}
+
+.uchat-homepage-body {
+    display: grid;
+    margin-top: var(--nav-height);
+}
+
+
+.uchat-body-section {
+    font-family: var(--font-system), monospace, bold;
+
+    display: grid;
+    margin: 20px 45px;
+    padding: 13px 45px 30px 45px;
+
+    border: 2px solid rgba(33, 37, 41, 0.13);
+    border-radius: 13px;
+
+    background-color: #212529;
+    color: #f8f9fa;
 }

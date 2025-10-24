@@ -18,7 +18,7 @@ export default defineConfig([
     },
     rules: {
       "no-console": "warn",
-      "no-unused-vars": "error"
+      "no-unused-vars": "warn"
     }
   },
 
