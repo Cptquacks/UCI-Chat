@@ -1,0 +1,32 @@
+### TEST 1: Testing a get method
+GET http://localhost:3000/status
+
+### TEST 2: Testing post register
+POST http://localhost:3000/api/register
+Content-Type: application/json
+
+{
+    "username": "William",
+    "email" : "gcoello@estudiantes.uci.cu",
+    "password": "FKY2fhTJ"
+}
+
+### TEST 3: Testing post register
+POST http://localhost:3000/api/register
+Content-Type: application/json
+
+{
+    "username": "Pedro",
+    "email" : "gcoello@profesores.uci.cu",
+    "password": "FKY2fhTJ"
+}
+
+### TEST 4: Testing post register
+POST http://localhost:3000/api/login
+Content-Type: application/json
+
+{
+    "username": "Pedro",
+    "email" : "gcoello@profesores.uci.cu",
+    "password": "FKY2fhTJ"
+}
