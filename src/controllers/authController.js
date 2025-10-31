@@ -40,6 +40,7 @@ async function login(req, res) {
         req.session = session;
         req.session.data = response;
         req.session.data.password = password;
+
         return res.send(response);
     }
     catch (err) {
@@ -73,22 +74,25 @@ async function logout(req, res) {
     return res.status(500).send({ success: false, error: 'could not logout user' });
 }
 
-async function hasAuth(req, res, next) {
+async function hasAuth(req, res) {
     try {
 
         if (!req.session) {
             console.error('[ AUTH ERROR ] Auth error at fetching session');
-            return res.status(400).send({ success: false, error: 'could not fetch session' });
+            return { success: false, error: 'could not fetch session' };
         }
 
         const { email } = req.session.data;
         if (!email) {
             console.error('[ AUTH ERROR ] Auth error at fetching email');
-            return res.status(400).send({ success: false, error: 'could not fetch email' });
+            return { success: false, error: 'could not fetch email' };
         }
 
-        next();
+        login(req, res);
+        return { success: true, message: '[ AUTH SUCCESS ] Success at fetching session' };
+
     }
+
     catch (err) {
         console.error('[ AUTH ERROR ] Failed to check auth:', err);
     }

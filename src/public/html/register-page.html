@@ -9,22 +9,30 @@
 
     <title>UChat</title>
 </head>
-
 <body>
-
     <section class="user-login-form">
         <p id="user-login-tittle">Inicio de sesion</p>
+
         <div id="credentials-field">
+            <input id="username-field" type="text" placeholder="Nombre usuario...">
             <input id="email-field" type="email" placeholder="Correo UCI...">
             <input id="password-field" type="password" placeholder="Contraseña...">
+            <input id="confirmation-field" type="password" placeholder="Repita la contraseña...">
+            
+            <p id="role-indicator">Seleccione su rol</p>
+
+            <select id="role-field">
+                <option value="STUDENT">Estudiante</option>
+                <option value="TEACHER">Profesor</option>
+            </select>
+
         </div>
 
         <div id="credentials-input">
-            <input id="submit-register" type="button" value="Registrarse" hidden="true">
-            <input id="submit-login" type="button" value="Acceder">
+            <input id="submit-register" type="button" value="Registrarse">
+            <input id="submit-login" type="button" value="Acceder" hidden="true">
         </div>
 
     </section>
 </body>
-
 </html>

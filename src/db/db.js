@@ -52,12 +52,12 @@ async function loginUser(userData) {
         });
 
         if (!validateEmail(userData.email)) {
-            console.error('[ DB ERROR ] Error at fetching, user = ', user);
+            console.error('[ DB ERROR ] Error at fetching, bad email, user = ', user);
             return { success: false, error: 'bad email' };
         }
 
         if (!user) {
-            console.error('[ DB ERROR ] Error at fetching, user = ', user);
+            console.error('[ DB ERROR ] Error at fetching, undefined data, user = ', user);
             return { success: false, error: 'bad credentials' };
         }
 

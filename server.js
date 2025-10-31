@@ -6,6 +6,7 @@ const socket = require('socket.io');
 const ipAddr = require('./src/utils/ipAddr');
 const authController = require('./src/controllers/authController');
 
+
 const app = express();
 const server = http.createServer(app);
 const io = socket(server);
@@ -24,10 +25,23 @@ app.get('/status', (req, res) => {
     });
 });
 
-app.get('/api/login', authController.hasAuth);
+app.get('/api/login', (req, res) => {
+    const response = authController.hasAuth(req, res).success;
+
+    if (response) {
+        return;
+    }
+
+    res.sendFile(__dirname + '/src/public/html/login-page.html');
+
+});
+app.get('/api/register', (req, res) => {
+    res.sendFile(__dirname + '/src/public/html/register-page.html');
+});
 
 app.post('/api/register', authController.register);
 app.post('/api/login', authController.login);
+app.post('/api/logout', authController.logout);
 
 io.on('connection', (socket) => {
 
