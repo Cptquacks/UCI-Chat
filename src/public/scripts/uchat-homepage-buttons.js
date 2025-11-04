@@ -25,7 +25,7 @@ async function homepageRegister() {
 }
 
 async function homepageLogin() {
-    const request = await fetch('/api/login', {
+    const request = await fetch('/api/auth', {
         method: 'POST',
         credentials: 'include',
         headers: {

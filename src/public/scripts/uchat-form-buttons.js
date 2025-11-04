@@ -47,7 +47,8 @@ async function submitLogin(email, password) {
         }),
         headers: {
             'Content-Type': 'application/json'
-        }
+        },
+        credentials: 'include'
     })
         .then(res => res.json())
         .then(data => {

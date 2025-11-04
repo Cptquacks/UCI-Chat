@@ -5,6 +5,7 @@ const socket = require('socket.io');
 //propietary imports
 const ipAddr = require('./src/utils/ipAddr');
 const authController = require('./src/controllers/authController');
+const sessionModel = require('./src/models/sessionModel');
 
 
 const app = express();
@@ -12,31 +13,37 @@ const server = http.createServer(app);
 const io = socket(server);
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(sessionModel);
+
 app.use(express.static(__dirname + '/src/public'));
 app.use(express.static(__dirname + '/src/public/html'));
 app.use(express.static(__dirname + '/src/public/styles'));
 app.use(express.static(__dirname + '/src/public/scripts'));
 
-app.get('/status', (req, res) => {
+app.get('/server/status', (req, res) => {
     res.send({
         status: server.listening,
         uptime: process.uptime() + 's',
-        host: app.name
+        host: 'HP Laptop'
     });
 });
 
-app.get('/api/login', (req, res) => {
-    const response = authController.hasAuth(req, res).success;
-
-    if (response) {
-        return;
-    }
-
-    res.sendFile(__dirname + '/src/public/html/login-page.html');
-
+app.get('/api/auth', authController.hasAuth, (req, res) => {
+    res.redirect('/chat/profile');
 });
+
+app.get('/api/login', (req, res) => {
+    res.sendFile(__dirname + '/src/public/html/login-page.html');
+});
+
 app.get('/api/register', (req, res) => {
     res.sendFile(__dirname + '/src/public/html/register-page.html');
+});
+
+app.get('/chat/profile', authController.hasAuth, (req, res) => {
+    res.sendFile(__dirname + '/src/public/html/profile-page.html');
 });
 
 app.post('/api/register', authController.register);

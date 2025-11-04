@@ -6,10 +6,6 @@ const sessionModel = session({
     unset: false,
     saveUninitialized: false,
     name: 'uci_chat_session',
-    data: {
-        email: null,
-        password: null
-    },
     cookie: {
         secure: false,
         maxAge: 48 * 60 * 60 * 1000,
