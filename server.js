@@ -8,6 +8,7 @@ const socket = require('socket.io');
 //Controllers
 const authController = require('./src/controllers/authController');
 const sessionController = require('./src/controllers/sessionController');
+const socketController = require('./src/controllers/socketController');
 
 //models
 const sessionModel = require('./src/models/sessionModel');
@@ -24,6 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(sessionModel);
+io.engine.use(sessionModel);
 
 app.use(express.static(__dirname + '/src/public'));
 app.use(express.static(__dirname + '/src/public/html'));
@@ -69,28 +71,59 @@ app.get('/api/profile', sessionController.hasSession, async (req, res) => {
     res.send(response);
 });
 
+
+/* 
+    Chat routes
+*/
+app.get('/chat/index', sessionController.hasSession, async (req, res) => {
+    res.sendFile(__dirname + '/src/public/html/chat-index.html');
+});
+
+
+/*
+    Post routes
+*/
 app.post('/api/register', authController.register);
 app.post('/api/login', authController.login);
 app.post('/api/logout', sessionController.hasSession, authController.logout);
 app.post('/api/update', sessionController.hasSession, authController.update);
 
+/*
+    404 ERR
+*/
 app.use((req, res) => {
     console.log('[ ERROR ] 404 not found');
 
     res.sendFile(__dirname + '/src/public/html/404-error.html');
 });
 
+
+/* 
+    Socket functionallity
+*/
+app.get('/socket.io/socket.io.js', (req, res) => {
+    res.sendFile(__dirname + '/node_modules/socket.io/client-dist/socket.io.js');
+});
+
+io.use(socketController.socketAuth);
+
 io.on('connection', (socket) => {
 
-    console.log('[ LOG ] User connected:', socket.id);
-
+    socketController.socketConnection(socket);
     socket.on('disconnect', () => {
         console.log('[ LOG ] user disconnected');
+    });
+
+    socket.on('ping', (data) => {
+        console.log('[ LOG ] data recieved ' + data.message);
+        socket.emit('pong', { message: 'Data recepted', timeStamp: new Date() });
     });
 
 });
 
 
+
+// Server runner
 const PORT = process.env.PORT ?? 3000;
 server.listen(PORT, '0.0.0.0', (err) => {
     if (err) {
