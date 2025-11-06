@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* ✅ El padding cuenta dentro del width */
+}
+
+:root {
+    --uci-shadow: rgba(20, 20, 20, 0.5);
+  /* Tus colores actuales */
+  --uci-blue-50: #e6f0ff;
+  --uci-blue-100: #b3d4ff;
+  --uci-blue-500: #0033a0;
+  --uci-blue-900: #001a50;
+  --uci-blue-1000: #000d28;
+  
+  --uci-red-500: #d52b1e;
+  --uci-orange-500: #ff6b00;
+  
+  --uci-gray-100: #f8f9fa;
+  --uci-gray-500: #6c757d;
+  --uci-gray-900: #212529;
+
+  /* ✅ COLORES COMPLEMENTARIOS PARA BOTONES */
+  
+  /* Verde - Para acciones positivas (éxito, confirmar) */
+  --uci-green-100: #d4edda;
+  --uci-green-500: #28a745;    /* Complementario al azul */
+  --uci-green-700: #1e7e34;
+  --uci-green-900: #155724;
+  
+  /* Amarillo - Para advertencias, alertas */
+  --uci-yellow-100: #fff3cd;
+  --uci-yellow-500: #ffc107;   /* Complementario al morado/azul */
+  --uci-yellow-700: #e0a800;
+  --uci-yellow-900: #856404;
+  
+  /* Morado - Complementario directo del naranja */
+  --uci-purple-100: #e2d9f3;
+  --uci-purple-500: #6f42c1;   /* Complementario del naranja */
+  --uci-purple-700: #5a2d9c;
+  --uci-purple-900: #3c1c6e;
+  
+  /* Variantes de tus colores principales para estados */
+  --uci-blue-300: #4d7cff;     /* Hover del azul principal */
+  --uci-blue-700: #00267a;     /* Active del azul principal */
+  
+  --uci-red-300: #e74c3c;      /* Hover del rojo */
+  --uci-red-700: #a93226;      /* Active del rojo */
+  
+  --uci-orange-300: #ff8c42;   /* Hover del naranja */
+  --uci-orange-700: #cc5500;   /* Active del naranja */
+
+  --font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 
+                 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+                 'Helvetica Neue', sans-serif;
+  
+  --font-mono: 'Cascadia Code', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono',
+               'Droid Sans Mono', 'Source Code Pro', 'Ubuntu Mono', monospace;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient( var(--uci-purple-900) 60%, var(--uci-purple-500));
+}
+
+.error-label {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--uci-gray-900);
+    padding: 28px 50px;
+    border-radius: 15px;
+    box-shadow: 
+    0px 10px 20px .5px var(--uci-shadow),
+    0px 0px 0px 1px var(--uci-purple-700);
+}
+
+.error-label p {
+    color: var(--uci-gray-100);
+    font-family: var(--font-mono);
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.error-label button {
+    align-self: center;
+    margin: 30px 8px 5px 8px;
+    transition: all 0.15s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+
+    font-family: var(--font-system);
+    font-size: 24px;
+    font-weight: 600;
+    padding: 5px 30px;
+    border-radius: 20px;
+    border: none;
+    background-color: var(--uci-gray-500);
+    color: var(--uci-gray-900);
+    opacity: 50%;
+    box-shadow: 
+        0px 3px 8px 3px var(--uci-shadow),
+        0px 0px 0px 1px var(--uci-purple-700);
+}
+
+.error-label button:hover {
+    transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+    transform: scale(108%);
+    opacity: 100%;
+    color: var(--uci-gray-100);
+    background-color: var(--uci-blue-1000);
+    box-shadow: 
+        0px 3px 8px 3px var(--uci-shadow),
+        0px 0px 0px 1px var(--uci-purple-700),
+        0px 0px 8px 0.5px var(--uci-purple-500);
+}

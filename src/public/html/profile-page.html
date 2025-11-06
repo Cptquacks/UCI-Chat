@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="/styles/profile-page.css">
+    <script defer src="/scripts/uchat-profile-buttons.js"></script>
+    <script defer src="/scripts/uchat-profile-info.js"></script>
 
     <title>UChat</title>
 </head>
@@ -31,13 +33,17 @@
 
         <div class="profile-settings">
             <p id="settings-title">Configuracion de perfil</p>
-            <input type="text" placeholder="Nombre de usuario...">
-            <input type="password" placeholder="Contraseña...">
+            <input id="profile-tweaks" type="text" placeholder="Nombre de usuario...">
+            <input id="profile-tweaks" type="email" placeholder="Correo institucional...">
+
+            <p id="settings-title">Cambio de contraseña</p>
+            <input id="profile-tweaks" type="password" placeholder="Contraseña antigua...">
+            <input id="profile-tweaks" type="password" placeholder="Contraseña nueva...">
         </div>
 
         <div class="profile-buttons">
-            <input type="button" value="Guardar Cambios">
-            <input type="button" value="Cerrar sesion">
+            <input id="profile-button" type="button" value="Guardar Cambios">
+            <input id="profile-button" type="button" value="Cerrar sesion">
         </div>
 
     </section>

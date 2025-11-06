@@ -56,7 +56,7 @@ async function submitLogin(email, password) {
                 return;
             }
 
-            window.location.href = '/';
+            window.location.href = '/chat/profile';
         });
 
 }
@@ -82,7 +82,7 @@ async function submitRegister(username, email, password, role) {
         .then(res => res.json())
         .then(data => {
             if (!data.success) {
-                alert("Ha ocurrido un error al crear la cuenta!");
+                alert("Ha ocurrido un error al crear la cuenta!\n" + data.error);
                 return;
             }
 

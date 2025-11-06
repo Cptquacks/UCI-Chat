@@ -1,15 +1,15 @@
-const db = require('../db/db');
+const db = require('../db/db'); //Essential
+const sessionController = require('./sessionController');
 
 async function register(req, res) {
     try {
         const { username, email, password, role } = req.body;
-        const response = await db.createUser({ username, email, password, role });
-
         if (!username || !email || !password) {
             console.error('[ AUTH ERROR ] Failed to register user, no credentials');
             return res.status(400).send({ success: false, error: 'could not create user' });
         }
 
+        const response = await db.createUser({ username, email, password, role });
         if (!response) {
             return res.send(response);
         }
@@ -19,7 +19,7 @@ async function register(req, res) {
             sessionPassword: password
         };
 
-        await saveSession(req.session);
+        await sessionController.saveSession(req.session);
         return res.send(response);
 
     }
@@ -32,10 +32,15 @@ async function register(req, res) {
 async function login(req, res) {
     try {
         const { email, password } = req.body;
-        const response = await db.loginUser({ email, password });
+        if (!email || !password) {
+            console.error('[ AUTH ERROR ] No credentials');
+            return res.status(500).send({ success: false, error: 'No credentials' });
+        }
 
+        const response = await db.loginUser({ email, password });
         if (!response) {
-            return res.send(response);
+            console.error('[ AUTH ERROR ] Bad response');
+            return res.status(500).send(response);
         }
 
         req.session.user = {
@@ -43,8 +48,8 @@ async function login(req, res) {
             sessionPassword: password
         };
 
-        await saveSession(req.session);
-        return res.send(response);
+        await sessionController.saveSession(req.session);
+        return res.status(200).send(response);
     }
     catch (err) {
         console.error('[ AUTH ERROR ] Failed to login user:', err);
@@ -62,7 +67,7 @@ async function logout(req, res) {
             return res.status(404).send({ success: false, error: 'could not find user' });
         }
 
-        await deleteSession(req.session);
+        await sessionController.deleteSession(req.session);
         res.clearCookie('uci_chat_session');
 
         return res.send({ success: true, message: 'cookie cleared' });
@@ -73,50 +78,32 @@ async function logout(req, res) {
     return res.status(500).send({ success: false, error: 'could not logout user' });
 }
 
-async function hasAuth(req, res, next) {
+async function update(req, res) {
     try {
+        const { newEmail, newUser, newPassword } = req.body;
+        const response = await db.updateUser({ newEmail, newUser, newPassword });
 
-        if (!req.session.user) {
-            console.error('[ AUTH ERROR ] Auth error at fetching session');
-            res.redirect('/api/login');
-            return { success: false, error: 'could not fetch session' };
+        if (!response) {
+            console.error('[ AUTH ERROR ] Response invalid');
+            return res.status(500).send({ success: false, error: 'Could not update user' });
         }
 
-        //console.log(req.session);
-        const { sessionEmail } = req.session.user;
+        req.session.user = {
+            sessionEmail: newEmail,
+            sessionPassword: newPassword
+        };
 
-        if (!sessionEmail) {
-            console.error('[ AUTH ERROR ] Auth error at fetching email');
-            return { success: false, error: 'could not fetch email' };
-        }
-
-        next();
-        return { success: true, message: '[ AUTH SUCCESS ] Success at fetching session' };
-
+        await sessionController.saveSession(req.session);
+        return res.status(200).send({ success: true, data: response });
     }
-
     catch (err) {
-        console.error('[ AUTH ERROR ] Failed to check auth:', err);
+        console.error('[ AUTH ERROR ] User could not be updated ' + err);
+        return res.status(500).send({ success: false, error: 'Could not update user' });
     }
-    return res.status(500).send({ success: false, error: 'could not check auth' });
 }
 
-async function saveSession(session) {
-    return new Promise((resolve, reject) => {
-        session.save((err) => {
-            if (err) reject(err);
-            else resolve();
-        });
-    });
-}
 
-async function deleteSession(session) {
-    return new Promise((resolve, reject) => {
-        session.destroy((err) => {
-            if (err) reject(err);
-            else resolve();
-        });
-    });
-}
 
-module.exports = { register, login, logout, hasAuth };
+
+
+module.exports = { register, login, logout, update };

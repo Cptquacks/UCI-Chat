@@ -74,11 +74,7 @@ html {
 }
 
 #uchat-homepage-buttons {
-    transition: 
-        padding 0.3s ease-in 0s,
-        color .3s ease-in 0s,
-        background-color 0.3s ease-in 0s,
-        oppacity 0.3s ease-in 0s;
+    transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
 
     font-family: var(--font-system);
     font-size: 20px;
@@ -93,11 +89,7 @@ html {
 }
 
 #uchat-homepage-buttons:hover {
-    transition: 
-        padding 0.3s ease-out 0s,
-        color .3s ease-out 0s,
-        background-color 0.3s ease-out 0s,
-        oppacity 0.3s ease-out 0s;
+    transition: all 0.15s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
 
     font-family: var(--font-system);
     font-size: 20px;
@@ -105,14 +97,33 @@ html {
     border: none;
     border-radius: 20px;
 
-    padding: 8px 28px;
+    padding: 8px 20px;
+    border-bottom: 3px solid var(--uci-gray-500);
 
     color: var(--uci-gray-100);
     background-color: var(--uci-gray-900);
     opacity: 80%;
 }
 
+#uchat-homepage-buttons:hover:focus {
+    transition: all 0.1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+
+    font-family: var(--font-system);
+    font-size: 20px;
+
+    border: none;
+    border-radius: 20px;
+
+    padding: 8px 20px;
+    border-bottom: 0px solid var(--uci-gray-500);
+
+    color: var(--uci-gray-100);
+    background-color: var(--uci-gray-900);
+    opacity: 50%;
+}
+
 .uchat-homepage-body {
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0s;
     display: grid;
     margin-top: var(--nav-height);
 }
