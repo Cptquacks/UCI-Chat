@@ -102,8 +102,4 @@ async function update(req, res) {
     }
 }
 
-
-
-
-
 module.exports = { register, login, logout, update };

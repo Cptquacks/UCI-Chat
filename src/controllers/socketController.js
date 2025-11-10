@@ -24,15 +24,17 @@ async function socketConnection(socket) {
 
     onlineUsers.set(sessionEmail, socket.id);
     console.log('[ SOCKET LOG ] No. Users ' + onlineUsers.size);
+
     return sessionEmail;
 }
 
 async function socketDisconnection(socket) {
     const { sessionEmail } = socket.request.session.user;
-    console.log('[ SOCKET LOG ] User connected with email ' + sessionEmail);
+    console.log('[ SOCKET LOG ] User disconnected with email ' + sessionEmail);
 
     onlineUsers.delete(sessionEmail, socket.id);
     console.log('[ SOCKET LOG ] No. Users ' + onlineUsers.size);
+
     return sessionEmail;
 }
 

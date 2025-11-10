@@ -122,7 +122,6 @@ async function updateUser(userData) {
         }
 
         const { newUser, newEmail, newPassword } = userData;
-
         const encryptedPassword = newPassword ? await encode.hash(newPassword, 12) : null;
 
         console.log('[ DB LOG ] Trying to update user');
@@ -131,11 +130,13 @@ async function updateUser(userData) {
             where: {
                 email: userData.email
             },
+
             data: {
                 userName: newUser || user.userName,
                 email: newEmail || user.email,
                 password: encryptedPassword || user.password
             },
+
             select: {
                 id: true,
                 email: true,
