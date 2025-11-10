@@ -5,6 +5,7 @@ const socket = require('socket.io');
 /*
     Propietary imports
 */
+
 //Controllers
 const authController = require('./src/controllers/authController');
 const sessionController = require('./src/controllers/sessionController');
@@ -16,23 +17,26 @@ const sessionModel = require('./src/models/sessionModel');
 //utils
 const ipAddr = require('./src/utils/ipAddr');
 
-
+//initializers
 const app = express();
 const server = http.createServer(app);
 const io = socket(server);
 
+//use dependencies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(sessionModel);
 io.engine.use(sessionModel);
 
+//public routes
 app.use(express.static(__dirname + '/src/public'));
 app.use(express.static(__dirname + '/src/public/html'));
 app.use(express.static(__dirname + '/src/public/styles'));
 app.use(express.static(__dirname + '/src/public/scripts'));
 
 
+//status getter
 app.get('/server/status', (req, res) => {
     res.send({
         status: server.listening,
