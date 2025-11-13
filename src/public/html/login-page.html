@@ -4,24 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="/styles/login-page.css">
+    <link rel="stylesheet" href="/styles/generics.css">
+
     <script src="/scripts/uchat-form-buttons.js" defer></script>
+    <script src="/scripts/uchat-clickable-buttons.js" defer></script>
 
     <title>UChat</title>
 </head>
 
+<style>
+    #credentials-field {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+</style>
+
 <body>
 
-    <section class="user-login-form">
+    <section class="default-view-layout">
         <p id="user-login-tittle">Inicio de sesion</p>
         <div id="credentials-field">
+            <p style="font-size: 20px;">Correo institucional</p>
             <input id="email-field" type="email" placeholder="Correo UCI...">
+            <p style="font-size: 20px;">Contraseña</p>
             <input id="password-field" type="password" placeholder="Contraseña...">
         </div>
 
         <div id="credentials-input">
-            <input id="submit-register" type="button" value="Registrarse" hidden="true">
-            <input id="submit-login" type="button" value="Acceder">
+            <button id="submit-login">Acceder</button>
         </div>
 
     </section>

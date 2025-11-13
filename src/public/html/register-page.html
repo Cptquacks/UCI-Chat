@@ -4,24 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="/styles/login-page.css">
+    <link rel="stylesheet" href="/styles/generics.css">
     <script src="/scripts/uchat-form-buttons.js" defer></script>
 
     <title>UChat</title>
 </head>
 <body>
-    <section class="user-login-form">
+    <section class="default-view-layout">
         <p id="user-login-tittle">Inicio de sesion</p>
 
-        <div id="credentials-field">
+        <div id="credentials-field" 
+        style="
+            display: flex; 
+            flex-direction: column; 
+            gap: 5px;
+        ">
+            <br>
+            <p style="font-weight: 300; font-size: 20px;">Nombre de usuario</p>
             <input id="username-field" type="text" placeholder="Nombre usuario...">
+
+            <br>
+            <p style="font-weight: 300; font-size: 20px;">Correo institucional</p>
             <input id="email-field" type="email" placeholder="Correo UCI...">
+
+            <br>
+            <p style="font-weight: 300; font-size: 20px;">Contraseña</p>
             <input id="password-field" type="password" placeholder="Contraseña...">
+
+            <br>
+            <p style="font-weight: 300; font-size: 20px;">Repita su contraseña</p>
             <input id="confirmation-field" type="password" placeholder="Repita la contraseña...">
             
-            <p id="role-indicator">Seleccione su rol</p>
+            <p id="role-indicator" style="font-weight: 300; font-size: 20px; align-self: center; margin-top: 5%;">Seleccione su rol</p>
 
-            <select id="role-field">
+            <select id="role-field"
+            style="
+                align-self: center;
+                text-align: center;
+                width: 80%;
+
+                font-family: var(--font-mono);
+                font-size: 18px;
+
+                background-color: var(--uci-blue-1000);
+                color: var(--uci-gray-100);
+
+                border: none;   
+                border-radius: 100vh;
+                padding: 3px 10px;
+                box-shadow:
+                    0px 3px 8px 3px var(--uci-shadow),
+                    0px 0px 0px 1px var(--uci-purple-700);
+            ">
                 <option value="STUDENT">Estudiante</option>
                 <option value="TEACHER">Profesor</option>
             </select>
@@ -29,8 +63,7 @@
         </div>
 
         <div id="credentials-input">
-            <input id="submit-register" type="button" value="Registrarse">
-            <input id="submit-login" type="button" value="Acceder" hidden="true">
+            <button id="submit-register">Registrarse</button>
         </div>
 
     </section>

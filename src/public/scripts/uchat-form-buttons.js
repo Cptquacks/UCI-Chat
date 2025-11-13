@@ -8,9 +8,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const role_field = document.getElementById('role-field');
 
-    const submit_login = document.getElementById('submit-login');
-    const submit_register = document.getElementById('submit-register');
+    const submit_login = document.getElementById('submit-login') || null;
+    const submit_register = document.getElementById('submit-register') || null;
 
+
+    if (!submit_login) {
+        return;
+    }
     submit_login.addEventListener('click', () => {
         if (!email_field || !password_field) {
             return;
@@ -18,6 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
         submitLogin(email_field.value, password_field.value);
     })
 
+
+    if (!submit_register) {
+        return;
+    }
     submit_register.addEventListener('click', () => {
         if (!userName_field || !email_field || !password_field || !confirmation_field || !role_field) {
             return;
