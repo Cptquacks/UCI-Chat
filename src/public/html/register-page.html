@@ -5,10 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="/styles/generics.css">
-    <script src="/scripts/uchat-form-buttons.js" defer></script>
+    <script defer src="/scripts/uchat-form-buttons.js"></script>
+    <script defer src="/scripts/uchat-clickable-buttons.js"></script>
 
     <title>UChat</title>
 </head>
+
+<style>
+    select {
+        transition: all 1.0s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+
+        align-self: center;
+        text-align: center;
+
+        width: 80%;
+
+        font-family: var(--font-mono);
+        font-size: 18px;
+        font-weight: bold;
+
+        background-color: var(--uci-gray-500);
+        color: var(--uci-gray-900);
+        opacity: 50%;
+
+        border: none;   
+        border-radius: 100vh;
+
+        padding: 3px 10px;
+        box-shadow:
+            0px 3px 8px 3px var(--uci-shadow),
+            0px 0px 0px 1px var(--uci-purple-700);
+    }
+
+    select:hover {
+        transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+
+
+        transform: scale(108%);
+        opacity: 100%;
+
+        text-shadow: none;
+        box-shadow:
+            0px 3px 8px 3px var(--uci-shadow),
+            0px 0px 0px 1px var(--uci-purple-700),
+            0px 0px 8px 0.5px var(--uci-purple-500);
+    }
+
+    select:focus {
+        transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+
+        background-color: var(--uci-blue-1000);
+        color: var(--uci-gray-100);
+
+        transform: scale(108%);
+        opacity: 100%;
+
+        text-shadow: none;
+        box-shadow:
+            0px 3px 8px 3px var(--uci-shadow),
+            0px 0px 0px 1px var(--uci-purple-700),
+            0px 0px 8px 0.5px var(--uci-purple-500);
+    }
+</style>
+
 <body>
     <section class="default-view-layout">
         <p id="user-login-tittle">Inicio de sesion</p>
@@ -37,25 +96,7 @@
             
             <p id="role-indicator" style="font-weight: 300; font-size: 20px; align-self: center; margin-top: 5%;">Seleccione su rol</p>
 
-            <select id="role-field"
-            style="
-                align-self: center;
-                text-align: center;
-                width: 80%;
-
-                font-family: var(--font-mono);
-                font-size: 18px;
-
-                background-color: var(--uci-blue-1000);
-                color: var(--uci-gray-100);
-
-                border: none;   
-                border-radius: 100vh;
-                padding: 3px 10px;
-                box-shadow:
-                    0px 3px 8px 3px var(--uci-shadow),
-                    0px 0px 0px 1px var(--uci-purple-700);
-            ">
+            <select id="role-field">
                 <option value="STUDENT">Estudiante</option>
                 <option value="TEACHER">Profesor</option>
             </select>

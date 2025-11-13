@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* ✅ El padding cuenta dentro del width */
+    box-sizing: border-box;
 }
 
 :root {
@@ -50,6 +52,8 @@
 
     --font-mono: 'Cascadia Code', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono',
                 'Droid Sans Mono', 'Source Code Pro', 'Ubuntu Mono', monospace;
+
+    --font-montserrat: 'Montserrat', sans-serif;
 }
 
 body { 
@@ -89,7 +93,7 @@ button {
         0px 0px 0px 1px var(--uci-purple-700);
 }
 
-button:hover {
+button:hover, button:focus {
     transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
 
     background-color: var(--uci-blue-1000);
