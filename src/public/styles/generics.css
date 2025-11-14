@@ -93,11 +93,12 @@ button {
         0px 0px 0px 1px var(--uci-purple-700);
 }
 
-button:hover, button:focus {
+button:hover {
     transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
 
     background-color: var(--uci-blue-1000);
     color: var(--uci-gray-100);
+    cursor: pointer;
 
     transform: scale(108%);
     opacity: 100%;
@@ -157,7 +158,7 @@ button:hover, button:focus {
 
     font-family: var(--font-system);
     font-size: 24px;
-    cursor: pointer;
+    cursor: text;
 
     padding: 5px 50px;
 
