@@ -1,6 +1,12 @@
+/*
+    Server essentials
+*/ 
 const express = require('express');
 const http = require('http');
 const socket = require('socket.io');
+const favicon = require('serve-favicon');
+
+
 
 /*
     Propietary imports
@@ -25,15 +31,13 @@ const io = socket(server);
 //use dependencies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(favicon(__dirname+'/src/public/images/favicon.ico'));
 
 app.use(sessionModel);
 io.engine.use(sessionModel);
 
 //public routes
 app.use(express.static(__dirname + '/src/public'));
-app.use(express.static(__dirname + '/src/public/html'));
-app.use(express.static(__dirname + '/src/public/styles'));
-app.use(express.static(__dirname + '/src/public/scripts'));
 
 
 //status getter
@@ -46,9 +50,11 @@ app.get('/server/status', (req, res) => {
 });
 
 
+
 /*
     Account manipulation
 */
+
 app.get('/api/auth', sessionController.hasSession, (req, res) => {
     res.redirect('/chat/profile');
 });

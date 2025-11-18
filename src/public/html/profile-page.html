@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" href="/styles/profile-page.css">
     <link rel="stylesheet" href="/styles/generics.css">
     
@@ -13,45 +14,667 @@
     <script defer src="/scripts/uchat-clickable-buttons.js"></script>
 
     <title>UChat</title>
-</head>
 
-<style>
-    input {
-        transform: scale(0.8);
-    }
+    <style>
+        /* CSS específico para la estructura de perfil - SIN DUPLICAR generics.css */
+        .default-view-layout {
+            width: 90%;
+            max-width: 1200px;
+            margin: 80px auto;
+            align-items: flex-start;
+            min-height: auto;
+        }
 
-    #settings-title {
-        transform: scale(0.8);
-    }
-</style>
+        #session-tittle {
+            margin-bottom: 25px;
+            align-self: center;
+            text-align: center;
+        }
 
-
-<body>
-    <section class="default-view-layout" 
-    style="
-        width: 100%; 
-        margin: 80px 150px; 
-        align-items: flex-start;
-    ">
-
-        <p id="session-tittle" style="
-                margin-bottom: 25px; align-self: center; 
-                font-family: var(--font-montserrat);
-                font-size: 28px;
-                font-weight: bold;
-        ">
-        Informacion de perfil
-        </p>
-        <div style="
+        .profile-container {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             width: 100%;
+            gap: 50px;
             align-self: center;
-        ">
+        }
 
-            <div class="profile-info" style="align-self: left; justify-content: center;">
+        .profile-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            min-width: 300px;
+            align-self: flex-start;
+            justify-content: center;
+        }
 
+        #profile-data {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--uci-purple-500);
+            width: 100%;
+        }
+
+        #indicator {
+            font-weight: bold;
+            opacity: .8;
+        }
+
+        #data {
+            opacity: 1;
+            font-size: 20px;
+        }
+
+        .profile-settings {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            min-width: 300px;
+        }
+
+        #settings-title {
+            align-self: flex-start;
+            margin-bottom: 5px;
+        }
+
+        #profile-tweaks {
+            width: 100%;
+        }
+
+        .profile-buttons {
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+            width: 100%;
+            max-width: 400px;
+            margin-top: 40px;
+            gap: 15px;
+        }
+
+        #profile-button {
+            width: 100%;
+            margin: 0;
+        }
+
+        /* ========== RESPONSIVE DESIGN ========== */
+
+        /* Tablets grandes (1024px - 851px) */
+        @media screen and (max-width: 1024px) {
+            .default-view-layout {
+                margin: 60px auto;
+                padding: 35px 25px;
+                background-size: 10%;
+            }
+            
+            .profile-container {
+                gap: 40px;
+            }
+            
+            #profile-data {
+                font-size: 18px;
+            }
+            
+            #profile-tweaks {
+                font-size: 18px;
+                padding: 7px 22px;
+            }
+            
+            #profile-button {
+                font-size: 20px;
+            }
+        }
+
+        /* Tablets medianas (850px - 769px) */
+        @media screen and (max-width: 850px) {
+            .default-view-layout {
+                transform: scale(0.9);
+                margin: 40px auto;
+                transform-origin: center;
+                padding: 30px 25px;
+            }
+            
+            .profile-container {
+                gap: 30px;
+            }
+            
+            #session-tittle {
+                font-size: 26px;
+            }
+            
+            #profile-data {
+                font-size: 17px;
+            }
+            
+            #settings-title {
+                font-size: 20px;
+            }
+            
+            #profile-tweaks {
+                font-size: 17px;
+                padding: 7px 20px;
+            }
+            
+            #profile-button {
+                font-size: 19px;
+            }
+        }
+
+        /* Tablets pequeñas (768px - 651px) */
+        @media screen and (max-width: 768px) {
+            .default-view-layout {
+                transform: scale(1);
+                margin: 30px auto;
+                padding: 25px 20px;
+                width: 95%;
+                background-size: 12vh;
+            }
+            
+            .profile-container {
+                flex-direction: column;
+                gap: 35px;
+            }
+            
+            .profile-info, .profile-settings {
+                min-width: 100%;
+            }
+            
+            #session-tittle {
+                font-size: 25px;
+                margin-bottom: 20px;
+            }
+            
+            #profile-data {
+                font-size: 17px;
+                padding: 12px 0;
+            }
+            
+            #settings-title {
+                font-size: 19px;
+            }
+            
+            #profile-tweaks {
+                font-size: 17px;
+                padding: 7px 20px;
+            }
+            
+            .profile-buttons {
+                margin-top: 30px;
+                max-width: 350px;
+            }
+            
+            #profile-button {
+                font-size: 18px;
+            }
+        }
+
+        /* Móviles grandes en portrait (650px - 501px) */
+        @media screen and (max-width: 650px) {
+            body {
+                align-items: flex-start;
+                padding: 10px;
+                min-height: 100vh;
+            }
+            
+            .default-view-layout {
+                margin: 15px auto;
+                padding: 20px 16px;
+                background-size: 10vh;
+                background-position: 98% 98%;
+                width: 95%;
+                min-height: auto;
+            }
+            
+            #session-tittle {
+                font-size: 22px;
+                margin-bottom: 15px;
+            }
+            
+            .profile-container {
+                gap: 25px;
+            }
+            
+            #profile-data {
+                font-size: 15px;
+                padding: 10px 0;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            
+            #settings-title {
+                font-size: 17px;
+                margin-bottom: 8px;
+            }
+            
+            #profile-tweaks {
+                font-size: 15px;
+                padding: 6px 16px;
+            }
+            
+            .profile-buttons {
+                margin-top: 20px;
+                max-width: 300px;
+                width: 100%;
+                gap: 12px;
+            }
+            
+            #profile-button {
+                font-size: 16px;
+                margin: 0;
+            }
+        }
+
+        /* Móviles medianos en portrait (500px - 421px) */
+        @media screen and (max-width: 500px) {
+            .default-view-layout {
+                margin: 12px auto;
+                padding: 18px 14px;
+                background-size: 9vh;
+                background-position: 98% 97%;
+            }
+            
+            #session-tittle {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+            
+            .profile-container {
+                gap: 22px;
+            }
+            
+            #profile-data {
+                font-size: 14px;
+                padding: 9px 0;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 3px;
+            }
+            
+            #settings-title {
+                font-size: 16px;
+                margin-bottom: 6px;
+            }
+            
+            #profile-tweaks {
+                font-size: 14px;
+                padding: 5px 14px;
+            }
+            
+            .profile-buttons {
+                margin-top: 18px;
+                max-width: 280px;
+                gap: 10px;
+            }
+            
+            #profile-button {
+                font-size: 15px;
+            }
+        }
+
+        /* Móviles estrechos en portrait (420px - 376px) */
+        @media screen and (max-width: 420px) {
+            body {
+                padding: 8px;
+            }
+            
+            .default-view-layout {
+                margin: 10px auto;
+                padding: 16px 12px;
+                background-size: 8vh;
+                width: 100%;
+            }
+            
+            #session-tittle {
+                font-size: 19px;
+                margin-bottom: 12px;
+            }
+            
+            .profile-container {
+                gap: 20px;
+            }
+            
+            .profile-info {
+                gap: 18px;
+            }
+            
+            #profile-data {
+                font-size: 13px;
+                padding: 8px 0;
+            }
+            
+            .profile-settings {
+                gap: 12px;
+            }
+            
+            #settings-title {
+                font-size: 15px;
+                margin-bottom: 5px;
+            }
+            
+            #profile-tweaks {
+                font-size: 13px;
+                padding: 4px 12px;
+            }
+            
+            .profile-buttons {
+                margin-top: 16px;
+                max-width: 100%;
+                gap: 8px;
+            }
+            
+            #profile-button {
+                font-size: 14px;
+            }
+        }
+
+        /* Pantallas con baja altura (menos de 600px alto) */
+        @media screen and (max-width: 650px) and (max-height: 600px) {
+            body {
+                padding: 5px;
+                align-items: flex-start;
+            }
+            
+            .default-view-layout {
+                margin: 8px auto;
+                padding: 15px 12px;
+                background-size: 8vh;
+                background-position: 98% 5%;
+            }
+            
+            #session-tittle {
+                font-size: 20px;
+                margin-bottom: 12px;
+            }
+            
+            .profile-container {
+                gap: 20px;
+                flex-direction: column;
+            }
+            
+            .profile-info {
+                gap: 12px;
+            }
+            
+            #profile-data {
+                font-size: 14px;
+                padding: 8px 0;
+            }
+            
+            .profile-settings {
+                gap: 10px;
+            }
+            
+            #settings-title {
+                font-size: 16px;
+                margin-bottom: 5px;
+            }
+            
+            #profile-tweaks {
+                font-size: 14px;
+                padding: 5px 14px;
+            }
+            
+            .profile-buttons {
+                margin-top: 15px;
+                max-width: 280px;
+                gap: 8px;
+            }
+            
+            #profile-button {
+                font-size: 14px;
+            }
+        }
+
+        /* Resoluciones específicas como 650x360 */
+        @media screen and (max-width: 650px) and (max-height: 400px) {
+            .default-view-layout {
+                margin: 5px auto;
+                padding: 12px 10px;
+                background-size: 6vh;
+            }
+            
+            #session-tittle {
+                font-size: 18px;
+                margin-bottom: 8px;
+            }
+            
+            .profile-container {
+                gap: 15px;
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            
+            .profile-info, .profile-settings {
+                flex: 1;
+                min-width: auto;
+            }
+            
+            .profile-info {
+                gap: 8px;
+            }
+            
+            #profile-data {
+                font-size: 12px;
+                padding: 6px 0;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2px;
+            }
+            
+            .profile-settings {
+                gap: 8px;
+            }
+            
+            #settings-title {
+                font-size: 14px;
+                margin-bottom: 3px;
+            }
+            
+            #profile-tweaks {
+                font-size: 12px;
+                padding: 4px 10px;
+            }
+            
+            .profile-buttons {
+                flex-direction: row;
+                justify-content: space-between;
+                max-width: 100%;
+                margin-top: 12px;
+                gap: 10px;
+            }
+            
+            #profile-button {
+                font-size: 12px;
+                width: 48%;
+            }
+        }
+
+        /* Móviles pequeños (375px y menos) */
+        @media screen and (max-width: 375px) {
+            body {
+                padding: 5px;
+            }
+            
+            .default-view-layout {
+                margin: 8px auto;
+                padding: 14px 10px;
+                background-size: 7vh;
+            }
+            
+            #session-tittle {
+                font-size: 17px;
+                margin-bottom: 10px;
+            }
+            
+            .profile-container {
+                gap: 18px;
+            }
+            
+            #profile-data {
+                font-size: 12px;
+                padding: 7px 0;
+            }
+            
+            #settings-title {
+                font-size: 14px;
+                margin-bottom: 4px;
+            }
+            
+            #profile-tweaks {
+                font-size: 12px;
+                padding: 3px 10px;
+            }
+            
+            .profile-buttons {
+                margin-top: 14px;
+                gap: 6px;
+            }
+            
+            #profile-button {
+                font-size: 13px;
+            }
+        }
+
+        /* Móviles muy pequeños (320px y menos) */
+        @media screen and (max-width: 320px) {
+            .default-view-layout {
+                margin: 5px auto;
+                padding: 12px 8px;
+                background-size: 6vh;
+            }
+            
+            #session-tittle {
+                font-size: 16px;
+            }
+            
+            #profile-data {
+                font-size: 11px;
+            }
+            
+            #settings-title, #profile-tweaks, #profile-button {
+                font-size: 11px;
+            }
+            
+            #profile-tweaks {
+                padding: 3px 8px;
+            }
+        }
+
+        /* Modo landscape para móviles */
+        @media screen and (max-height: 500px) and (orientation: landscape) {
+            body {
+                align-items: flex-start;
+                padding: 8px;
+            }
+            
+            .default-view-layout {
+                margin: 8px auto;
+                padding: 15px 12px;
+                background-size: 7vh;
+                background-position: 98% 50%;
+            }
+            
+            .profile-container {
+                flex-direction: row;
+                gap: 15px;
+            }
+            
+            .profile-info, .profile-settings {
+                min-width: auto;
+                flex: 1;
+            }
+            
+            .profile-buttons {
+                flex-direction: row;
+                justify-content: space-between;
+                max-width: 100%;
+                margin-top: 12px;
+                gap: 8px;
+            }
+            
+            #profile-button {
+                width: 48%;
+                font-size: 13px;
+                margin: 0;
+            }
+            
+            #profile-data {
+                font-size: 13px;
+                padding: 6px 0;
+            }
+            
+            #profile-tweaks {
+                font-size: 13px;
+                padding: 4px 12px;
+            }
+        }
+
+        /* Pantallas altas y estrechas (como 412x915) */
+        @media screen and (max-width: 420px) and (min-height: 800px) {
+            .default-view-layout {
+                margin: 20px auto;
+                padding: 20px 15px;
+                background-size: 9vh;
+                background-position: 98% 96%;
+            }
+            
+            #session-tittle {
+                font-size: 20px;
+                margin-bottom: 25px;
+            }
+            
+            .profile-container {
+                gap: 30px;
+            }
+            
+            .profile-info {
+                gap: 22px;
+            }
+            
+            #profile-data {
+                font-size: 15px;
+                padding: 12px 0;
+            }
+            
+            .profile-settings {
+                gap: 18px;
+            }
+            
+            #settings-title {
+                font-size: 17px;
+                margin-bottom: 8px;
+            }
+            
+            #profile-tweaks {
+                font-size: 15px;
+                padding: 6px 16px;
+            }
+            
+            .profile-buttons {
+                margin-top: 30px;
+                max-width: 320px;
+                gap: 15px;
+            }
+            
+            #profile-button {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="default-view-layout">
+        <p id="session-tittle">
+            Informacion de perfil
+        </p>
+        <div class="profile-container">
+            <div class="profile-info">
                 <p id="profile-data">
                     <span id="indicator">Nombre de usuario:</span>
                     <span id="data">placeholder</span>
@@ -68,13 +691,7 @@
                 </p>
             </div>
 
-            <div class="profile-settings" style="
-                display: flex; 
-                flex-direction: column; 
-                align-items: center;
-                gap: 3px;
-            ">
-
+            <div class="profile-settings">
                 <p id="settings-title">Configuracion de perfil</p>
                 <input id="profile-tweaks" type="text" placeholder="Nombre de usuario...">
                 <input id="profile-tweaks" type="email" placeholder="Correo institucional...">
@@ -82,22 +699,13 @@
                 <p id="settings-title">Cambio de contraseña</p>
                 <input id="profile-tweaks" type="password" placeholder="Contraseña antigua...">
                 <input id="profile-tweaks" type="password" placeholder="Contraseña nueva...">
-
             </div>
         </div>
 
-        <div class="profile-buttons" 
-        style="
-            display: flex; 
-            flex-direction: column; 
-            align-self: center; 
-            width: 30%; 
-            margin-top: 8%;
-        ">
-            <button id="profile-button" style="width: 100%; margin: -8%;">Guardar cambios</button>
-            <button id="profile-button" style="width: 100%;">Cerrar sesion</button>
+        <div class="profile-buttons">
+            <button id="profile-button">Guardar cambios</button>
+            <button id="profile-button">Cerrar sesion</button>
         </div>
-
     </section>
 </body>
 

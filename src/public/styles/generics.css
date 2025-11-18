@@ -130,7 +130,7 @@ button:hover {
     background-image: url('https://www.uci.cu/sites/default/files/logo_1.png');
     background-repeat: no-repeat;
     background-position: 95% 95%;
-    background-size: 18%;
+    background-size: 15vh;
 
     padding: 30px 20px;
     border-radius: 15px;
@@ -183,6 +183,15 @@ button:hover {
 }
 
 
+.default-view-tittle {
+    margin-bottom: 3px; 
+    align-self: center;
+
+    font-family: var(--font-montserrat);
+    font-size: 28px;
+    font-weight: bold;
+}
+
 
 @keyframes on_click {
     0% {
@@ -199,5 +208,38 @@ button:hover {
 
     100% {
         transform: scale(108%);
+    }
+}
+
+
+@media screen and (width <= 915px) {
+    .default-view-layout {
+        scale: 75%;
+    }
+}
+
+@media screen and (width <= 810px) {
+    .default-view-layout {
+        background-size: 10vh;
+    }
+}
+
+@media screen and (width <= 450px) {
+    * {
+        scale: 95%;
+    }
+
+    .default-view-layout {
+        background-size: 13vh;
+    }
+}
+
+@media screen and (width <= 360px) {
+    * {
+        scale: 90%;
+    }
+
+    .default-view-layout {
+        background-size: 13vh;
     }
 }

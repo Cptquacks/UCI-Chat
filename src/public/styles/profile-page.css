@@ -29,6 +29,6 @@
 #data {
     font-family: var(--font-system);
     font-weight: 600;
-    border-bottom: 2px dashed var(--uci-purple-700);
+    font-size: 15px;
     padding: 0px 3px;
 }
