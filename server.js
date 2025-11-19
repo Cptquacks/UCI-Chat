@@ -38,6 +38,10 @@ io.engine.use(sessionModel);
 
 //public routes
 app.use(express.static(__dirname + '/src/public'));
+app.use(express.static(__dirname + '/src/public/html'));
+app.use(express.static(__dirname + '/src/public/styles'));
+app.use(express.static(__dirname + '/src/public/scripts'));
+app.use(express.static(__dirname + '/src/public/images'));
 
 
 //status getter
@@ -49,7 +53,9 @@ app.get('/server/status', (req, res) => {
     });
 });
 
-
+app.get('/', (req, res) => {
+    res.sendFile(__dirname+'/src/public/html/index.html');
+});
 
 /*
     Account manipulation
