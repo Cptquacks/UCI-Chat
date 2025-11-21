@@ -1,0 +1,13 @@
+@import url(/styles/generic.css);
+
+.chat-index-navbar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 1% 1.5%;
+    background-color: var(--uci-gray-100);
+    width: 100%;
+    border-bottom: 2px solid var(--uci-purple-500);
+    box-shadow: 
+        0px 0px 10px 3px var(--uci-shadow);
+}

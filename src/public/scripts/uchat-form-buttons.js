@@ -64,7 +64,7 @@ async function submitLogin(email, password) {
                 return;
             }
 
-            window.location.href = '/chat/profile';
+            window.location.href = '/chat/index';
         });
 
 }
@@ -94,6 +94,6 @@ async function submitRegister(username, email, password, role) {
                 return;
             }
 
-            window.location.href = '/';
+            window.location.href = '/chat/index';
         });
 }
