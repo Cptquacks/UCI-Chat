@@ -77,4 +77,4 @@ npm run dev
 ---
 
 **Desarrollado como proyecto de tesis en la Universidad de las Ciencias Informáticas (UCI)**  
-*Documentación técnica actualizada: Octubre 2024*
+*Documentación técnica actualizada: Noviembre 2025*
