@@ -1,8 +1,8 @@
-@import url(color-scheme.css);
-@import url(button-styles.css);
-@import url(view-styles.css);
-@import url(dialog-styles.css);
-@import url(responsive.css);
+@import url(components/button-styles.css);
+@import url(components/color-scheme.css);
+@import url(components/dialog-styles.css);
+@import url(components/responsive.css);
+@import url(components/view-styles.css);
 
 * {
     margin: 0;
