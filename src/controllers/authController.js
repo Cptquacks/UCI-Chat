@@ -10,7 +10,7 @@ async function register(req, res) {
         }
 
         const response = await db.createUser({ username, email, password, role });
-        if (!response) {
+        if (!response || response.error) {
             return res.send(response);
         }
 
@@ -38,7 +38,7 @@ async function login(req, res) {
         }
 
         const response = await db.loginUser({ email, password });
-        if (!response) {
+        if (!response || response.error) {
             console.error('[ AUTH ERROR ] Bad response');
             return res.status(500).send(response);
         }
@@ -83,7 +83,7 @@ async function update(req, res) {
         const { newEmail, newUser, newPassword } = req.body;
         const response = await db.updateUser({ newEmail, newUser, newPassword });
 
-        if (!response) {
+        if (!response || response.error) {
             console.error('[ AUTH ERROR ] Response invalid');
             return res.status(500).send({ success: false, error: 'Could not update user' });
         }
