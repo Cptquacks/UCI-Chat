@@ -2,7 +2,9 @@
     - Homepage buttons functionallity
     - Just documented this for visual appliance
 
+    It is autodocumented, wow, unironically, well donde Js
 */
+
 document.addEventListener('DOMContentLoaded', () => {
 
     const [login_button, register_button] = document.querySelectorAll('[id="uchat-homepage-buttons"]');

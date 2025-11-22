@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/styles/generics.css">
     <script defer src="/scripts/uchat-form-buttons.js"></script>
     <script defer src="/scripts/uchat-clickable-buttons.js"></script>
+    <script defer src="/scripts/uchat-modal-dialogs.js"></script>
 
     <title>UChat</title>
 </head>
@@ -70,6 +71,20 @@
 </style>
 
 <body>
+    <dialog class="default-err-dialog">
+        
+        <p class="default-view-tittle">
+            Ha ocurrido un error:
+        </p>
+
+        <p id="default-err-text">
+            placeholder
+        </p>
+
+        <button id="default-err-button">Cerrar</button>
+
+    </dialog>
+
     <section class="default-view-layout">
         <p class="default-view-tittle">
         Creacion de cuentas
@@ -87,7 +102,7 @@
 
             <br>
             <p style="font-weight: 300; font-size: 20px;">Correo institucional</p>
-            <input id="email-field" type="email" placeholder="Correo UCI...">
+            <input id="email-field" type="text" placeholder="Correo UCI...">
 
             <br>
             <p style="font-weight: 300; font-size: 20px;">Contraseña</p>

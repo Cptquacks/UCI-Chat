@@ -62,7 +62,7 @@ app.get('/', (req, res) => {
 */
 
 app.get('/api/auth', sessionController.hasSession, (req, res) => {
-    res.redirect('/chat/profile');
+    res.redirect('/chat/index');
 });
 
 app.get('/api/login', (req, res) => {

@@ -6,7 +6,11 @@
 const err_text = document.getElementById('default-err-text');
 
 document.addEventListener("DOMContentLoaded", () => {
-
+    
+    /*
+        Get fields
+        Auto declarative
+    */
     const userName_field = document.getElementById('username-field');
     const email_field = document.getElementById('email-field');
 
@@ -15,37 +19,67 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const role_field = document.getElementById('role-field');
 
+
+    /*
+        Finally the submit buttons
+    */
     const submit_login = document.getElementById('submit-login') || null;
     const submit_register = document.getElementById('submit-register') || null;
 
 
-    if (!submit_login) {
-        return;
+    if (submit_login) {
+
+        submit_login.addEventListener('click', () => {
+            if (!email_field || !password_field) {
+                err_text.textContent = 'Todos los campos son requeridos.'
+                
+                // eslint-disable-next-line no-undef
+                openModal();
+                return;
+            }
+
+            submitLogin(email_field.value, password_field.value);
+
+        })
+
     }
-    submit_login.addEventListener('click', () => {
-        if (!email_field || !password_field) {
-            return;
-        }
-        submitLogin(email_field.value, password_field.value);
-    })
+
+    if (submit_register) {
+
+        submit_register.addEventListener('click', () => {
+            if (userName_field === '' || email_field === '') {
+                err_text.textContent = 'Los campos de usuario son requeridos.';
+                
+                // eslint-disable-next-line no-undef
+                openModal();
+                return;
+            }
+
+            if (password_field === '' || confirmation_field === '') {
+                err_text.textContent = 'Los campos de credenciales son requeridos.';
+                
+                // eslint-disable-next-line no-undef
+                openModal();
+                return;
+            }
 
 
-    if (!submit_register) {
-        return;
+            // Finally evaluate if password in the confirmation and password fields are equals
+            if (password_field.value !== confirmation_field.value) {
+                err_text.textContent = 'Las contraseñas deben coincidir.'
+
+                // eslint-disable-next-line no-undef
+                openModal();
+                return;
+            }
+
+            submitRegister(userName_field.value, email_field.value, password_field.value, role_field.value);
+        })
+    
     }
-    submit_register.addEventListener('click', () => {
-        if (!userName_field || !email_field || !password_field || !confirmation_field || !role_field) {
-            return;
-        }
-
-        if (password_field.value !== confirmation_field.value) {
-            alert("Las contraseñas deben coincidir");
-            return;
-        }
-
-        submitRegister(userName_field.value, email_field.value, password_field.value, role_field.value);
-    })
 })
+
+
 
 async function submitLogin(email, password) {
 
@@ -113,7 +147,19 @@ async function submitRegister(username, email, password, role) {
         .then(res => res.json())
         .then(data => {
             if (!data.success) {
-                alert("Ha ocurrido un error al crear la cuenta!\n" + data.error);
+                const error_message = data.error;
+                let shown_message = '';
+
+                if (error_message.includes('bad email')) 
+                    shown_message = 'El email introducido no es valido';
+                
+                else if (error_message.includes('alredy exists')) 
+                    shown_message = 'Ya existe un usuario con esta direccion de';
+
+                else 
+                    shown_message = 'Error desconocido'
+
+                err_text.textContent = shown_message;
                 return;
             }
 

@@ -34,7 +34,6 @@
 }
 
 .default-err-dialog::backdrop {
-    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
     backdrop-filter: blur(5px);
     opacity: 0;
 }
