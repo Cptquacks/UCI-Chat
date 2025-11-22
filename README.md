@@ -62,7 +62,7 @@ Sistema de mensajería en tiempo real desarrollado con Node.js, Express y Socket
 ### Instalación
 ```bash
 # Clonar repositorio
-git clone <repository-url>
+git clone [<repository-url>](https://github.com/Cptquacks/UCI-Chat.git)
 
 # Instalar dependencias
 npm install
