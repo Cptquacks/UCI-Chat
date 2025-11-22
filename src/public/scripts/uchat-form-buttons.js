@@ -1,3 +1,10 @@
+/* 
+    TODO:
+    - Comment this file
+*/
+
+const err_text = document.getElementById('default-err-text');
+
 document.addEventListener("DOMContentLoaded", () => {
 
     const userName_field = document.getElementById('username-field');
@@ -61,6 +68,22 @@ async function submitLogin(email, password) {
         .then(res => res.json())
         .then(data => {
             if (!data.success) {
+                const error_message = data.error;
+                let shown_message = '';
+
+                if (error_message.includes('bad email')) 
+                    shown_message = 'El email introducido no es valido';
+                
+                else if (error_message.includes('bad credentials')) 
+                    shown_message = 'La contraseña introducida no es correcta';
+
+                else 
+                    shown_message = 'Error desconocido'
+
+                err_text.textContent = shown_message;
+
+                // eslint-disable-next-line no-undef
+                openModal();
                 return;
             }
 

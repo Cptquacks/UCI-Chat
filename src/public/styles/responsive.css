@@ -1,0 +1,32 @@
+
+@media screen and (width <= 915px) {
+    .default-view-layout {
+        scale: 75%;
+    }
+}
+
+@media screen and (width <= 810px) {
+    .default-view-layout {
+        background-size: 10vh;
+    }
+}
+
+@media screen and (width <= 450px) {
+    * {
+        scale: 95%;
+    }
+
+    .default-view-layout {
+        background-size: 13vh;
+    }
+}
+
+@media screen and (width <= 360px) {
+    * {
+        scale: 90%;
+    }
+
+    .default-view-layout {
+        background-size: 13vh;
+    }
+}

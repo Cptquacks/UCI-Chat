@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+    --uci-shadow: rgba(20, 20, 20, 0.5);
+
+    --uci-blue-50: #e6f0ff;
+    --uci-blue-100: #b3d4ff;
+    --uci-blue-500: #0033a0;
+    --uci-blue-900: #001a50;
+    --uci-blue-1000: #000d28;
+
+    --uci-red-500: #d52b1e;
+    --uci-orange-500: #ff6b00;
+
+    --uci-gray-100: #f8f9fa;
+    --uci-gray-500: #6c757d;
+    --uci-gray-900: #212529;
+
+    --uci-green-100: #d4edda;
+    --uci-green-500: #28a745;
+    --uci-green-700: #1e7e34;
+    --uci-green-900: #155724;
+
+    --uci-yellow-100: #fff3cd;
+    --uci-yellow-500: #ffc107;
+    --uci-yellow-700: #e0a800;
+    --uci-yellow-900: #856404;
+
+    --uci-purple-100: #e2d9f3;
+    --uci-purple-500: #6f42c1;
+    --uci-purple-700: #5a2d9c;
+    --uci-purple-900: #3c1c6e;
+
+    --uci-blue-300: #4d7cff;
+    --uci-blue-700: #00267a;
+
+    --uci-red-300: #e74c3c;
+    --uci-red-700: #a93226;
+
+    --uci-orange-300: #ff8c42;
+    --uci-orange-700: #cc5500;
+
+    --font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    --font-mono: 'Cascadia Code', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono', 'Droid Sans Mono', 'Source Code Pro', 'Ubuntu Mono', monospace;
+    --font-montserrat: 'Montserrat', sans-serif;
+}

@@ -1,0 +1,64 @@
+button {
+    transition: all 1.0s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+    align-self: center;
+    
+    font-family: var(--font-system);
+    font-size: 24px;
+    font-weight: 600;
+    
+    border-radius: 20px;
+    border: none;
+
+    background-color: var(--uci-gray-500);
+    color: var(--uci-gray-900);
+
+    margin: 30px 8px 5px 8px;
+    padding: 5px 30px;
+
+    opacity: 50%;
+
+    text-shadow: 0px 0px 5px var(--uci-shadow);
+    box-shadow: 
+        0px 3px 8px 3px var(--uci-shadow),
+        0px 0px 0px 1px var(--uci-purple-700);
+}
+
+button:hover {
+    transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+
+    background-color: var(--uci-blue-1000);
+    color: var(--uci-gray-100);
+    cursor: pointer;
+
+    transform: scale(108%);
+    opacity: 100%;
+
+    text-shadow: none;
+    box-shadow:
+        0px 3px 8px 3px var(--uci-shadow),
+        0px 0px 0px 1px var(--uci-purple-700),
+        0px 0px 8px 0.5px var(--uci-purple-500);
+}
+
+.on-clicked {
+    animation: on_click .3s ease-out 0s normal forwards;
+}
+
+
+@keyframes on_click {
+    0% {
+        transform: scale(108%);
+    }
+    
+    20% {
+        transform: scale(75%);
+    }
+
+    50% {
+        transform: scale(120%);
+    }
+
+    100% {
+        transform: scale(108%);
+    }
+}

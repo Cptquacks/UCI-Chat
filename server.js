@@ -5,7 +5,7 @@ const express = require('express');
 const http = require('http');
 const socket = require('socket.io');
 const favicon = require('serve-favicon');
-
+require('dotenv').config();
 
 
 /*

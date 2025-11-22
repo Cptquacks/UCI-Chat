@@ -1,0 +1,51 @@
+
+.default-err-dialog {
+    z-index: auto;
+    transition: 
+        all 3s cubic-bezier(0.23, 1, 0.320, 1) .15s,
+        opacity 0.5s cubic-bezier(0.075, 0.82, 0.165, 1) .15s;
+
+    position: fixed;
+    margin: none;
+    left: 50%;
+    top: 50%;
+
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--uci-gray-900);
+    padding: 30px 80px;
+    border: none;
+    border-radius: 15px;
+    gap: 8px;
+
+    box-shadow: 
+        0px 15px 20px .5px var(--uci-shadow),
+        0px 0px 0px 1.3px var(--uci-purple-700);
+}
+
+.default-err-dialog[open] {
+    opacity: 1;
+}
+
+.default-err-dialog::backdrop {
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+    backdrop-filter: blur(5px);
+    opacity: 0;
+}
+
+.default-err-dialog[open]::backdrop {
+    opacity: 1;
+}
+
+.default-err-dialog p {
+    font-family: var(--font-mono);
+    font-size: 14px;
+
+    color: var(--uci-gray-100);
+}
