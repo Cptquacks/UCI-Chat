@@ -12,6 +12,9 @@ require('dotenv').config();
     NOTE
     This are propietary imports like models and controllers
     decopled as multiple files
+
+    NOTE
+    Do not migrate to Prisma 7
 */
 
 //Controllers
