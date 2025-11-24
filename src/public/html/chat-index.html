@@ -17,14 +17,18 @@
 
     <nav class="chat-index-navbar">
         <span class="fas fa-user" id="profile-view-button" onclick="window.location.href = '/chat/profile'"></span>
+        <span class="fas fa-comments" id="uchat-title"> UChat</span>
     </nav>
 
     <div class="chat-view-layout">
-        <div class="aside-view-layout" id="left-panel">
-            <p>Yes</p>
+        <div class="aside-view-layout" id="chat-sidebar">
+            <ul>
+                <li><span class="fas fa-user"></span> Chat No 1</li>
+                <li><span class="fas fa-user"></span> Chat No 2</li>
+            </ul>
         </div>
 
-        <div class="aside-view-layout" id="right-panel">
+        <div class="aside-view-layout" id="chat-view">
             <p>No</p>
         </div>
     </div>

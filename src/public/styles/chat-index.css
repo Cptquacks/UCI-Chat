@@ -1,11 +1,18 @@
 @import url(/styles/generics.css);
 
 body {
-    background: none;
-    background-color: var(--uci-gray-900) !important;
+    height: 100vh;
+    margin: none;
+    padding: none;
+
+    justify-content: left;
 }
 
 .chat-index-navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
     position: fixed;
     left: 0;
     top: 0;
@@ -15,43 +22,38 @@ body {
     border-bottom: 2px solid var(--uci-purple-500);
     box-shadow: 
         0px 0px 10px 3px var(--uci-shadow);
-}
-
-#profile-view-button {
-    transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
-}
-
-#profile-view-button:hover {
-    transform: scale(120%);
-    filter:
-        drop-shadow(0px 0px 3px var(--uci-shadow))
-        drop-shadow(0px 0px 1px var(--uci-purple-500));
+    
 }
 
 .chat-view-layout {
     display: flex;
     flex-direction: row;
-    width: 100%;
-    height: auto;
-    text-align: center;
+    height: 100vh;
+    padding-top: 45px;
 }
 
-.aside-view-layout {
-    width: 100%;
-    height: 100%;
-    text-align: center;
+#chat-view {
+    flex: 1;
 }
 
-#left-panel {
-    width: 30% !important;
+#chat-sidebar {
+    width: 360px;
 
+    background-color: var(--uci-gray-900);
     text-align: left;
-    font-family: var(--font-system);
-    font-weight: 600;
-    font-size: 18px;
+    box-shadow: 
+        0px 0px 5px 3px var(--uci-shadow);
+}
 
-    padding: 10px 20px;
+#chat-sidebar li{
+    font-family: var(--font-system);
+    font-weight: 550;
 
     color: var(--uci-gray-100);
-    background-color: var(--uci-gray-950);
+    list-style: none;
+
+    padding: 5% 8%;
+    background-color: var(--uci-gray-1000);
+
+    border-top: 1px solid var(--uci-purple-700);
 }
