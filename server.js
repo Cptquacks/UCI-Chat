@@ -49,9 +49,9 @@ app.use(express.static(__dirname + '/src/public/images'));
 //status getter
 app.get('/server/status', sessionController.adminSession, async (req, res) => {
     res.send({
-        status: server.listening,
+        status: server.address(),
         uptime: process.uptime() + 's',
-        host: os.platform,
+        host: os.platform(),
         online: await socketController.socketGetusers()
     });
 });

@@ -19,4 +19,4 @@ def show_folder(path: str, ignored: list[str], prefix: str = "") -> None:
         print(f'[ ERROR: {e} ]')
 
 # Uso
-show_folder(os.curdir, ['node_modules', '.git', 'schemas'])
+show_folder(os.curdir, ['node_modules', '.git'])
