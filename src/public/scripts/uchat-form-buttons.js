@@ -1,12 +1,7 @@
-/* 
-    TODO:
-    - Comment this file
-*/
-
 const err_text = document.getElementById('default-err-text');
 
 document.addEventListener("DOMContentLoaded", () => {
-    
+
     /*
         Get fields
         Auto declarative
@@ -32,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         submit_login.addEventListener('click', () => {
             if (!email_field || !password_field) {
                 err_text.textContent = 'Todos los campos son requeridos.'
-                
+
                 // eslint-disable-next-line no-undef
                 openModal();
                 return;
@@ -49,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
         submit_register.addEventListener('click', () => {
             if (userName_field === '' || email_field === '') {
                 err_text.textContent = 'Los campos de usuario son requeridos.';
-                
+
                 // eslint-disable-next-line no-undef
                 openModal();
                 return;
@@ -57,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (password_field === '' || confirmation_field === '') {
                 err_text.textContent = 'Los campos de credenciales son requeridos.';
-                
+
                 // eslint-disable-next-line no-undef
                 openModal();
                 return;
@@ -75,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             submitRegister(userName_field.value, email_field.value, password_field.value, role_field.value);
         })
-    
+
     }
 })
 
@@ -105,13 +100,13 @@ async function submitLogin(email, password) {
                 const error_message = data.error;
                 let shown_message = '';
 
-                if (error_message.includes('bad email')) 
+                if (error_message.includes('bad email'))
                     shown_message = 'El email introducido no es valido';
-                
-                else if (error_message.includes('bad credentials')) 
+
+                else if (error_message.includes('bad credentials'))
                     shown_message = 'La contraseña introducida no es correcta';
 
-                else 
+                else
                     shown_message = 'Error desconocido'
 
                 err_text.textContent = shown_message;
@@ -150,13 +145,13 @@ async function submitRegister(username, email, password, role) {
                 const error_message = data.error;
                 let shown_message = '';
 
-                if (error_message.includes('bad email')) 
+                if (error_message.includes('bad email'))
                     shown_message = 'El email introducido no es valido';
-                
-                else if (error_message.includes('alredy exists')) 
+
+                else if (error_message.includes('alredy exists'))
                     shown_message = 'Ya existe un usuario con esta direccion de';
 
-                else 
+                else
                     shown_message = 'Error desconocido'
 
                 err_text.textContent = shown_message;

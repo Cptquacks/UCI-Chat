@@ -2,7 +2,6 @@ const { networkInterfaces } = require('os');
 
 function getLocalIpV4() {
     const nets = networkInterfaces();
-
     const allAddresses = Object.values(nets).flat();
 
     const localIp = allAddresses.find(

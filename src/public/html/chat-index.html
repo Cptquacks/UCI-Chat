@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/styles/chat-index.css">
 
     <script defer src="/socket.io/socket.io.js"></script>
+    <script defer src="/scripts/uchat-socket.io/uchat-socket-core.js"></script>
 
     <title>Document</title>
 </head>
@@ -15,7 +16,7 @@
 <body>
 
     <nav class="chat-index-navbar">
-        <span class="fas fa-user" id="profile-view-button"></span>
+        <span class="fas fa-user" id="profile-view-button" onclick="window.location.href = '/chat/profile'"></span>
     </nav>
 
     <div class="chat-view-layout">

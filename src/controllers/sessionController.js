@@ -27,6 +27,33 @@ async function getSession(session) {
     return await db.findByEmail(sessionEmail);
 }
 
+async function adminSession(req, res, next) {
+    try {
+        if (!req.session.user) {
+            console.error('[ SESSION ERROR ] Session error at fetching session');
+            return res.redirect('/api/login');
+        }
+
+        const { sessionEmail } = req.session.user;
+        if (!sessionEmail) {
+            console.error('[ SESSION ERROR ] Session error at fetching email');
+            return res.redirect('/api/login');
+        }
+
+        const user = await getSession(req.session);
+        if (!user.data.isAdmin) {
+            console.error('[ SESSION ERROR ] User is not admin');
+            return res.redirect('/chat/profile');
+        }
+
+        return next();
+    }
+    catch (err) {
+        console.error('[ SESSION ERROR ] Failed to check session:', err);
+    }
+    return res.status(500).send({ success: false, error: 'could not check session' });
+}
+
 async function hasSession(req, res, next) {
     try {
 
@@ -53,4 +80,4 @@ async function hasSession(req, res, next) {
     return res.status(500).send({ success: false, error: 'could not check session' });
 }
 
-module.exports = { saveSession, deleteSession, getSession, hasSession };
+module.exports = { saveSession, deleteSession, getSession, adminSession, hasSession };

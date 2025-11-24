@@ -1,15 +1,17 @@
 /*
     Server essentials
-*/ 
+*/
+const os = require('os');
 const express = require('express');
 const http = require('http');
 const socket = require('socket.io');
 const favicon = require('serve-favicon');
+
 require('dotenv').config();
-
-
 /*
-    Propietary imports
+    NOTE
+    This are propietary imports like models and controllers
+    decopled as multiple files
 */
 
 //Controllers
@@ -31,7 +33,7 @@ const io = socket(server);
 //use dependencies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(favicon(__dirname+'/src/public/images/favicon.ico'));
+app.use(favicon(__dirname + '/src/public/images/favicon.ico'));
 
 app.use(sessionModel);
 io.engine.use(sessionModel);
@@ -45,16 +47,17 @@ app.use(express.static(__dirname + '/src/public/images'));
 
 
 //status getter
-app.get('/server/status', (req, res) => {
+app.get('/server/status', sessionController.adminSession, async (req, res) => {
     res.send({
         status: server.listening,
         uptime: process.uptime() + 's',
-        host: 'HP Laptop'
+        host: os.platform,
+        online: await socketController.socketGetusers()
     });
 });
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname+'/src/public/html/index.html');
+    res.sendFile(__dirname + '/src/public/html/index.html');
 });
 
 /*

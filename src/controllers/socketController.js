@@ -19,6 +19,11 @@ async function socketAuth(socket, next) {
 }
 
 async function socketConnection(socket) {
+    if (!socket.request.session.user) {
+        console.error('[ SOCKET LOG ] Could not retrieve user session');
+        return { success: false, error: 'Could not retrieve user session' };
+    }
+
     const { sessionEmail } = socket.request.session.user;
     console.log('[ SOCKET LOG ] User connected with email ' + sessionEmail);
 
@@ -29,6 +34,11 @@ async function socketConnection(socket) {
 }
 
 async function socketDisconnection(socket) {
+    if (!socket.request.session.user) {
+        console.error('[ SOCKET LOG ] Could not retrieve user session');
+        return { success: false, error: 'Could not retrieve user session' };
+    }
+
     const { sessionEmail } = socket.request.session.user;
     console.log('[ SOCKET LOG ] User disconnected with email ' + sessionEmail);
 
@@ -39,7 +49,7 @@ async function socketDisconnection(socket) {
 }
 
 async function socketID(email) {
-    return onlineUsers.get(email);
+    return onlineUsers.get(email) || null;
 }
 
 async function socketGetusers() {
