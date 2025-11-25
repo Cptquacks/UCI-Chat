@@ -43,16 +43,12 @@ io.engine.use(sessionModel);
 
 //public routes
 app.use(express.static(__dirname + '/src/public'));
-app.use(express.static(__dirname + '/src/public/html'));
-app.use(express.static(__dirname + '/src/public/styles'));
-app.use(express.static(__dirname + '/src/public/scripts'));
-app.use(express.static(__dirname + '/src/public/images'));
 
 
 //status getter
 app.get('/server/status', sessionController.adminSession, async (req, res) => {
     res.send({
-        status: server.address(),
+        status: ipAddr(),
         uptime: process.uptime() + 's',
         host: os.platform(),
         online: await socketController.socketGetusers()
@@ -132,6 +128,7 @@ io.on('connection', (socket) => {
 
     socketController.socketConnection(socket);
     socket.on('disconnect', () => {
+        socketController.socketDisconnection(socket);
         console.log('[ LOG ] user disconnected');
     });
 
