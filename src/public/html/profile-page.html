@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="/styles/profile-page.css">
     <link rel="stylesheet" href="/styles/generics.css">
     
-    <script defer src="/scripts/uchat-profile-buttons.js"></script>
-    <script defer src="/scripts/uchat-profile-info.js"></script>
+    <script defer src="/scripts/uchat-profile/uchat-profile-buttons.js"></script>
+    <script defer src="/scripts/uchat-profile/uchat-profile-info.js"></script>
     
     <script defer src="/scripts/uchat-generics/uchat-clickable-buttons.js"></script>
+    <script defer src="/scripts/uchat-generics/uchat-modal-dialogs.js"></script>
 
     <title>UChat</title>
 
@@ -670,6 +671,20 @@
 </head>
 
 <body>
+    
+    <dialog class="default-err-dialog">
+        
+        <p class="default-view-tittle">
+            Ha ocurrido un error:
+        </p>
+
+        <p id="default-err-text">
+            placeholder
+        </p>
+
+        <button id="default-err-button">Cerrar</button>
+
+    </dialog>
 
     <section class="default-view-layout">
 
@@ -709,8 +724,8 @@
 
                 <p id="settings-title">Cambio de contraseña</p>
 
-                <input id="profile-tweaks" type="password" placeholder="Contraseña antigua...">
                 <input id="profile-tweaks" type="password" placeholder="Contraseña nueva...">
+                <input id="profile-tweaks" type="password" placeholder="Confirmar contraseña...">
 
             </div>
 

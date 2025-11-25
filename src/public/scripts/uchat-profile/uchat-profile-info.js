@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     tweakUsername.value = profile_info.username;
     tweakEmail.value = profile_info.email;
-})
+    tweakPassword.value = '';
+});
 
 async function getProfile() {
     const profile_Info = await fetch('/api/profile', {
@@ -18,8 +19,8 @@ async function getProfile() {
         headers: {
             'Content-Type': 'application/json'
         }
-    }).then(res => res.json())
+    }).then(res => res.json());
 
-    return profile_Info.data
+    return profile_Info.data;
 
 }

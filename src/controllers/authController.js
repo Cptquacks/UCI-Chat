@@ -64,7 +64,7 @@ async function logout(req, res) {
 
         if (!userExists) {
             console.error('[ AUTH ERROR ] Failed to logout user, don\'t exists');
-            return res.status(404).send({ success: false, error: 'could not find user' });
+            return res.status(500).send({ success: false, error: 'could not find user' });
         }
 
         await sessionController.deleteSession(req.session);
@@ -80,21 +80,37 @@ async function logout(req, res) {
 
 async function update(req, res) {
     try {
-        const { newEmail, newUser, newPassword } = req.body;
-        const response = await db.updateUser({ newEmail, newUser, newPassword });
-
-        if (!response || response.error) {
-            console.error('[ AUTH ERROR ] Response invalid');
-            return res.status(500).send({ success: false, error: 'Could not update user' });
+        if (!req.session.user) {
+            console.error('[ AUTH ERROR ] Could not retrieve session');
+            return res.status(400).send({ success: false, message: 'could not get user session' });
         }
 
+        const { sessionEmail, sessionPassword } = req.session.user;
+        const { newEmail, newPassword, newName } = req.body;
+
+        if (!sessionEmail || !sessionPassword) {
+            console.error('[ AUTH ERROR ] Could not retrieve session info');
+            return res.status(500).send({ success: false, message: 'could not get credentials' });
+        }
+
+
+        const response = await db.updateUser(
+            { sessionEmail, sessionPassword },
+            { newEmail, newPassword, newName }
+        );
+        if (!response || response.error) {
+            console.error('[ AUTH ERROR ] Bad response ' + response.error);
+            return res.status(500).send(response);
+        }
+
+
         req.session.user = {
-            sessionEmail: newEmail,
-            sessionPassword: newPassword
+            sessionEmail: newEmail || sessionEmail,
+            sessionPassword: newPassword || sessionPassword
         };
 
         await sessionController.saveSession(req.session);
-        return res.status(200).send({ success: true, data: response });
+        return res.status(200).send(response);
     }
     catch (err) {
         console.error('[ AUTH ERROR ] User could not be updated ' + err);

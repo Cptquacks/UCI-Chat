@@ -5,7 +5,7 @@ async function socketAuth(socket, next) {
         console.log(socket.request.session);
         const session = socket.request.session;
 
-        if (!session) {
+        if (!session || session === undefined) {
             console.error('[ SOCKET ERROR ] Could not get session');
             return next(new Error('Could not get session'));
         }

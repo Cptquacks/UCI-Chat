@@ -108,14 +108,13 @@ app.get('/chat/index', sessionController.hasSession, async (req, res) => {
 app.post('/api/register', authController.register);
 app.post('/api/login', authController.login);
 app.post('/api/logout', sessionController.hasSession, authController.logout);
-app.post('/api/update', sessionController.hasSession, authController.update);
+app.post('/api/profile', sessionController.hasSession, authController.update);
 
 /*
     404 ERR
 */
 app.use((req, res) => {
-    console.log('[ ERROR ] 404 not found');
-
+    console.log('[ ERROR ] 404 not found ' + req.url + ' method:' + req.method);
     res.sendFile(__dirname + '/src/public/html/404-error.html');
 });
 

@@ -1,6 +1,6 @@
 const err_text = document.getElementById('default-err-text');
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
 
     /*
         Get fields
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         submit_login.addEventListener('click', () => {
             if (!email_field || !password_field) {
-                err_text.textContent = 'Todos los campos son requeridos.'
+                err_text.textContent = 'Todos los campos son requeridos.';
 
                 // eslint-disable-next-line no-undef
                 openModal();
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             submitLogin(email_field.value, password_field.value);
 
-        })
+        });
 
     }
 
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Finally evaluate if password in the confirmation and password fields are equals
             if (password_field.value !== confirmation_field.value) {
-                err_text.textContent = 'Las contraseñas deben coincidir.'
+                err_text.textContent = 'Las contraseñas deben coincidir.';
 
                 // eslint-disable-next-line no-undef
                 openModal();
@@ -69,10 +69,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             submitRegister(userName_field.value, email_field.value, password_field.value, role_field.value);
-        })
+        });
 
     }
-})
+});
 
 
 
@@ -107,7 +107,7 @@ async function submitLogin(email, password) {
                     shown_message = 'La contraseña introducida no es correcta';
 
                 else
-                    shown_message = 'Error desconocido'
+                    shown_message = 'Error desconocido';
 
                 err_text.textContent = shown_message;
 
@@ -152,7 +152,7 @@ async function submitRegister(username, email, password, role) {
                     shown_message = 'Ya existe un usuario con esta direccion de';
 
                 else
-                    shown_message = 'Error desconocido'
+                    shown_message = 'Error desconocido';
 
                 err_text.textContent = shown_message;
                 return;

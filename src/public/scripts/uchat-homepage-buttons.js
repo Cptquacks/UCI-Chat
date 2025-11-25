@@ -12,33 +12,26 @@ document.addEventListener('DOMContentLoaded', () => {
     register_button.addEventListener('click', homepageRegister);
     login_button.addEventListener('click', homepageLogin);
 
-})
+});
 
 async function homepageRegister() {
-    const request = await fetch('/api/register', {
-        method: "GET"
-    });
-
-    if (!request) {
-        return;
-    }
-
-    window.location.href = request.url;
-}
-
-async function homepageLogin() {
-    const request = await fetch('/api/auth', {
-        method: 'POST',
+    fetch('/api/register', {
+        method: 'GET',
         credentials: 'include',
         headers: {
             'Content-Type': 'application/json'
         }
-    });
+    })
+        .then(res => { window.location.href = res.url; });
+}
 
-
-    if (!request) {
-        return;
-    }
-
-    window.location.href = request.url;
+async function homepageLogin() {
+    fetch('/api/auth', {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(res => { window.location.href = res.url; });
 }

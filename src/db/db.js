@@ -89,66 +89,58 @@ async function loginUser(userData) {
     }
 }
 
-async function updateUser(userData) {
+async function updateUser(oldData, newData) {
     try {
-        if (!userData) {
-            console.error('[ DB ERROR ] could not update user, userdata empty');
-            return { success: false, error: 'could not update user' };
-        }
-
-        if (!validateEmail(userData.newEmail)) {
-            console.error('[ DB ERROR ] could not update user, email invalid ' + userData.newEmail);
-            return { success: false, error: 'could not update user' };
-        }
-
+        const { sessionEmail, sessionPassword } = oldData;
+        const { newEmail, newPassword, newName } = newData;
 
 
         const user = await prisma.user.findFirst({
-            where: {
-                email: userData.email
-            }
+            where: { email: sessionEmail }
         });
-
         if (!user) {
-            console.error('[ DB ERROR ] No user could be found');
-            return { success: false, error: 'could not update user' };
+            console.error('[ DB ERROR ] Cannot update user, cannot retrieve user');
+            return { success: false, error: 'user is a null value' };
         }
 
-        const comparePasswords = await encode.compare(userData.password, user.password);
 
+        const comparePasswords = await encode.compare(
+            sessionPassword,
+            user.password
+        );
         if (!comparePasswords) {
-            console.error('[ DB ERROR ] Could not check password');
-            return { success: false, error: 'could not update user' };
+            console.error('[ DB ERROR ] Not valid credentials');
+            return { success: false, error: 'invalid credentials' };
         }
 
-        const { newUser, newEmail, newPassword } = userData;
-        const encryptedPassword = newPassword ? await encode.hash(newPassword, 12) : null;
 
-        console.log('[ DB LOG ] Trying to update user');
-
-        const newData = await prisma.user.update({
-            where: {
-                email: userData.email
-            },
-
+        const encryptedPassword = await encode.hash(
+            ((newPassword !== '') ? newPassword : sessionPassword),
+            12
+        );
+        await prisma.user.update({
+            where: { email: sessionEmail },
             data: {
-                userName: newUser || user.userName,
-                email: newEmail || user.email,
-                password: encryptedPassword || user.password
-            },
-
-            select: {
-                id: true,
-                email: true,
-                userName: true,
-                role: true,
-                isAdmin: true
+                email: newEmail || sessionEmail,
+                userName: newName || user.userName,
+                password: encryptedPassword,
+                role: user.role || 'STUDENT',
+                isAdmin: user.isAdmin
             }
         });
 
-        console.log('[ DB SUCCESS ] User updated!');
-        return { success: true, data: newData };
 
+        const newUser = await prisma.user.findFirst({
+            where: { email: newEmail }
+        });
+        if (!newUser) {
+            console.error('[ DB ERROR ] Cannot update user, cannot retrieve new user');
+            return { success: false, error: 'new user is a null value' };
+        }
+
+
+        console.log('[ DB SUCCESS ] updated user ' + newUser.email);
+        return { success: true, data: newUser };
     }
     catch (err) {
         console.error('[ DB ERROR ] could not update user ' + err);

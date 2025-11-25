@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         modal_dialog.close();
-    })
-})
+    });
+});
 
 // eslint-disable-next-line no-unused-vars
 function openModal() {
